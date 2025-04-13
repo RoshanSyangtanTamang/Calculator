@@ -64,3 +64,16 @@ body {
     cursor: pointer;
     box-shadow: -3px -3px 15px rgba(255, 255, 255, 0.1), 3px 3px 15px rgba(0, 0, 0, .7);
 }
+
+.buttons .operator {
+    position: relative;
+    color: yellowgreen;
+}
+
+.buttons .operator span {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-size: 25px;
+}
