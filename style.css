@@ -77,3 +77,32 @@ body {
     transform: translate(-50%, -50%);
     font-size: 25px;
 }
+
+.buttons .operator.backspace span {
+    display: flex;
+    align-items: center;
+    width: 22px;
+    height: 20px;
+    border: 2px solid yellowgreen;
+    border-left-color: transparent;
+    transform: translate(-30%, -50%);
+}
+
+.buttons .operator.backspace span::before {
+    content: '';
+    position: absolute;
+    left: -9px;
+    width: 12px;
+    height: 12px;
+    border-left: 2px solid yellowgreen;
+    border-bottom: 2px solid yellowgreen;
+    transform: rotate(45deg);
+}
+
+.buttons .operator.backspace span::after {
+    content: 'x';
+    padding-left: 3px;
+    padding-bottom: 4px;
+    font-size: 16px;
+    line-height: 1;
+}
