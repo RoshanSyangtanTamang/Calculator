@@ -9,6 +9,18 @@ let input = "",
 // main function to handle calculator logic
 const calculate = btnValue => {
 
+    // handle equals
+    if (btnValue === "=") {
+        const formattedInput = replaceOperators(input);
+
+        try {
+            const calculatedValue = eval(formattedInput);
+            result = calculatedValue;
+        } catch {
+            result = "Error";
+        }
+    };
+
     input += btnValue;
 
     // update display
@@ -16,6 +28,9 @@ const calculate = btnValue => {
     displayResult.value = result;
     displayInput.scrollLeft = displayInput.scrollWidth
 };
+
+// function to replace division (÷) and multiplication (×) symbols to javascript compatible operators ("/" and "*")
+const replaceOperators = input => input.replaceAll("÷", "/").replaceAll("×", "*");
 
 // Adding click event listeners to all buttons
 buttons.forEach(button => {
