@@ -15,13 +15,22 @@ const calculate = btnValue => {
 
         try {
             const calculatedValue = eval(formattedInput);
-            result = calculatedValue;
+            result = parseFloat(calculatedValue.toFixed(10));
         } catch {
             result = "Error";
         }
+
+        displayBox.classList.add("active");
     };
 
-    input += btnValue;
+    // handle AC (All Clear)
+    if (btnValue === "AC") {
+        resetCalculator("");
+    }
+    else {
+        input += btnValue;
+    }
+
 
     // update display
     displayInput.value = input;
@@ -31,6 +40,13 @@ const calculate = btnValue => {
 
 // function to replace division (÷) and multiplication (×) symbols to javascript compatible operators ("/" and "*")
 const replaceOperators = input => input.replaceAll("÷", "/").replaceAll("×", "*");
+
+// function to reset calculator state with a new input value
+const resetCalculator = newInput => {
+    input = newInput;
+    result = "";
+    displayBox.classList.remove("active");
+};
 
 // Adding click event listeners to all buttons
 buttons.forEach(button => {
