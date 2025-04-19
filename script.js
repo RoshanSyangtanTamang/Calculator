@@ -21,10 +21,10 @@ const calculate = btnValue => {
         }
 
         displayBox.classList.add("active");
-    };
+    }
 
     // handle AC (All Clear)
-    if (btnValue === "AC") {
+    else if (btnValue === "AC") {
         resetCalculator("");
     }
     else {
