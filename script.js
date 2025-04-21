@@ -9,9 +9,20 @@ let input = "",
 
 // main function to handle calculator logic
 const calculate = btnValue => {
+    const lastChar = input.slice(-1),
+        secondToLastChar = input.slice(-2, -1),
+        withoutLastChar = input.slice(0, -1),
+        isLastCharOperator = operators.includes(lastChar);
 
     // handle equals
     if (btnValue === "=") {
+        if (
+            input === "" ||
+            lastChar === "." ||
+            lastChar === "(" ||
+            isLastCharOperator && lastChar !== "%" ||
+            lastCalculation
+        ) return;
         const formattedInput = replaceOperators(input);
 
         try {
@@ -21,6 +32,7 @@ const calculate = btnValue => {
             result = "Error";
         }
 
+        // input += btnValue;
         lastCalculation = true;
         displayBox.classList.add("active");
     }
@@ -29,6 +41,13 @@ const calculate = btnValue => {
     else if (btnValue === "AC") {
         resetCalculator("");
     }
+
+    // Handle backspace
+    else if (btnValue === "") {
+        input = withoutLastChar;
+    }
+
+    // Handle numbers
     else {
         if (lastCalculation) resetCalculator(btnValue);
         else input += btnValue;
