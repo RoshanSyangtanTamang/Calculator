@@ -4,7 +4,8 @@ const displayBox = document.querySelector(".display"),
     buttons = document.querySelectorAll("button"),
     operators = ["%", "÷", "×", "-", "+"];
 let input = "",
-    result = "";
+    result = "",
+    lastCalculation = false;
 
 // main function to handle calculator logic
 const calculate = btnValue => {
@@ -20,6 +21,7 @@ const calculate = btnValue => {
             result = "Error";
         }
 
+        lastCalculation = true;
         displayBox.classList.add("active");
     }
 
@@ -28,7 +30,8 @@ const calculate = btnValue => {
         resetCalculator("");
     }
     else {
-        input += btnValue;
+        if (lastCalculation) resetCalculator(btnValue);
+        else input += btnValue;
     }
 
 
@@ -45,6 +48,7 @@ const replaceOperators = input => input.replaceAll("÷", "/").replaceAll("×", "
 const resetCalculator = newInput => {
     input = newInput;
     result = "";
+    lastCalculation = false;
     displayBox.classList.remove("active");
 };
 
