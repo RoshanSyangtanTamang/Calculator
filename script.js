@@ -13,6 +13,7 @@ const calculate = btnValue => {
         secondToLastChar = input.slice(-2, -1),
         withoutLastChar = input.slice(0, -1),
         isLastCharOperator = operators.includes(lastChar);
+        isInvalidResult = ["Error", "Infinity"].includes(result);
 
     // handle equals
     if (btnValue === "=") {
@@ -45,11 +46,20 @@ const calculate = btnValue => {
     // Handle backspace
     else if (btnValue === "") {
         if (lastCalculation) {
+            if (isInvalidResult) resetCalculator("");
             resetCalculator(result.slice(0, -1));
         }
         else input = withoutLastChar;
     }
 
+    // Handle operators
+    else if (operators.includes(btnValue)) {
+        if (lastCalculation) {
+            if (isInvalidResult) return;
+            resetCalculator(result + btnValue);
+        }
+        else input+=btnValue;
+    }
     // Handle numbers
     else {
         if (lastCalculation) resetCalculator(btnValue);
