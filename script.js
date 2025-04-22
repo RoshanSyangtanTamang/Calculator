@@ -27,7 +27,7 @@ const calculate = btnValue => {
 
         try {
             const calculatedValue = eval(formattedInput);
-            result = parseFloat(calculatedValue.toFixed(10));
+            result = parseFloat(calculatedValue.toFixed(10)).toString();
         } catch {
             result = "Error";
         }
@@ -44,7 +44,10 @@ const calculate = btnValue => {
 
     // Handle backspace
     else if (btnValue === "") {
-        input = withoutLastChar;
+        if (lastCalculation) {
+            resetCalculator(result.slice(0, -1));
+        }
+        else input = withoutLastChar;
     }
 
     // Handle numbers
